@@ -1,0 +1,27 @@
+<div class="row">
+  <div class="col text-center text-sm-start">
+    <form [formGroup]="previewForm">
+      <img #preview
+           [src]="filePath"
+           [alt]="previewForm.value.name"
+           class="figure-img img-fluid"
+           alt="preview"
+      >
+      <img #overlay
+           src="assets/frame.png"
+           class="position-absolute"
+           [style.left.px]="overlayLeft$ | async"
+           [style.width.px]="overlayWidth$ | async"
+           [style.height.px]="overlayHeight$ | async"
+           alt="overlay"
+      >
+      <label class="btn btn-outline-secondary btn-sm">
+        Добавить изображение...
+        <input type="file"
+               accept="image/*"
+               (change)="imgPreview($event)"
+               hidden>
+      </label>
+    </form>
+  </div>
+</div>
