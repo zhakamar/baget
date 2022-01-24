@@ -12,6 +12,7 @@ import {OrderButtonsComponent} from './components/order-buttons/order-buttons.co
 import {ReactiveFormsModule} from "@angular/forms";
 import {AddBagetComponent} from './components/add-baget/add-baget.component';
 import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
+import {HttpClientModule} from "@angular/common/http";
 
 @NgModule({
   declarations: [
@@ -22,13 +23,14 @@ import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
     CalcComponent,
     HeaderComponent,
     OrderButtonsComponent,
-    AddBagetComponent
+    AddBagetComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    NgbModule
+    NgbModule,
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

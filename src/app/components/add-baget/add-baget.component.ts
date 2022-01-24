@@ -1,5 +1,7 @@
-import {Component, Output, EventEmitter, TemplateRef} from '@angular/core';
+import {Component, TemplateRef} from '@angular/core';
 import {NgbModal, NgbModalRef} from "@ng-bootstrap/ng-bootstrap";
+import {BagetService} from "../../services/baget.service";
+import {tap} from "rxjs/operators";
 
 @Component({
   selector: 'app-add-baget',
@@ -11,6 +13,15 @@ export class AddBagetComponent {
   modalRef!: NgbModalRef;
   modalResult = '';
 
+  constructor(
+    private readonly modalService: NgbModal,
+    private readonly bagetService: BagetService,
+  ) {
+    bagetService.bagetRef.pipe(
+      tap(el => console.log(el)),
+    ).subscribe();
+  }
+
   triggerModal(content: TemplateRef<any>): void {
     this.modalRef = this.modalService.open(content);
   }
@@ -20,6 +31,4 @@ export class AddBagetComponent {
     this.modalRef.close();
   }
 
-  constructor(private readonly modalService: NgbModal) {
-  }
 }
