@@ -63,7 +63,7 @@ export class PreviewComponent {
 
   setOverlay(): void {
     const rect = this.preview?.nativeElement.getBoundingClientRect();
-    console.log(rect);
+    // console.log(rect);
     this.overlayLeft$.next(rect.x);
     this.overlayWidth$.next(rect.right - rect.left);
     this.overlayHeight$.next(rect.bottom - rect.top);

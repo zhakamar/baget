@@ -2,12 +2,12 @@ import {Injectable} from '@angular/core';
 import {AppSettings} from "../app.config";
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
-import {BagetRef} from "../components/add-baget/baget.model";
+import {PaspartuRef} from "../components/add-paspartu/paspartu.model";
 
 @Injectable({
   providedIn: 'root'
 })
-export class BagetService {
+export class PaspartuService {
   private readonly apiURL: string;
 
   constructor(
@@ -17,7 +17,7 @@ export class BagetService {
     this.apiURL = this.settings.apiURL;
   }
 
-  get bagetRef(): Observable<BagetRef[]> {
-    return this.http.get<BagetRef[]>(`${this.apiURL}/baget`);
+  get paspartuRef(): Observable<PaspartuRef[]> {
+    return this.http.get<PaspartuRef[]>(`${this.apiURL}/paspartu`);
   }
 }

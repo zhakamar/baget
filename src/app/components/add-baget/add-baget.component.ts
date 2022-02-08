@@ -1,34 +1,24 @@
-import {Component, TemplateRef} from '@angular/core';
-import {NgbModal, NgbModalRef} from "@ng-bootstrap/ng-bootstrap";
+import {ChangeDetectionStrategy, Component} from '@angular/core';
+import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 import {BagetService} from "../../services/baget.service";
-import {tap} from "rxjs/operators";
+import {Observable} from "rxjs";
+import {AddBaseComponent} from "../add-base/add-base.component";
+import {BagetRef} from "./baget.model";
 
 @Component({
   selector: 'app-add-baget',
   templateUrl: './add-baget.component.html',
-  styleUrls: ['./add-baget.component.scss']
+  styleUrls: ['./add-baget.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class AddBagetComponent {
-  // @Output() modalResult = new EventEmitter<string>();
-  modalRef!: NgbModalRef;
-  modalResult = '';
+export class AddBagetComponent extends AddBaseComponent {
+  bagetRef$: Observable<BagetRef[]>;
 
   constructor(
-    private readonly modalService: NgbModal,
+    modalService: NgbModal,
     private readonly bagetService: BagetService,
   ) {
-    bagetService.bagetRef.pipe(
-      tap(el => console.log(el)),
-    ).subscribe();
+    super(modalService);
+    this.bagetRef$ = bagetService.bagetRef;
   }
-
-  triggerModal(content: TemplateRef<any>): void {
-    this.modalRef = this.modalService.open(content);
-  }
-
-  setModalResult(res: string) {
-    this.modalResult = res;
-    this.modalRef.close();
-  }
-
 }

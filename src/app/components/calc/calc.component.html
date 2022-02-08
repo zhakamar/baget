@@ -1,64 +1,18 @@
-<!--Размер изображения-->
-<div class="row">
-  <label class="col-5 col-form-label col-form-label-sm text-end">Размер картины</label>
-  <div class="col-7">
-    <div class="input-group input-group-sm mb-2">
-      <span class="input-group-text">Ш:</span>
-      <input type="number" class="form-control">
-      <span class="input-group-text">В:</span>
-      <input type="number" class="form-control">
-      <span class="input-group-text">см.</span>
-    </div>
-  </div>
-
-  <!--Размер по раме-->
-  <label class="col-5 col-form-label col-form-label-sm text-end">Размер по раме</label>
-  <div class="col-7">
-    <div class="input-group input-group-sm mb-2">
-      <span class="input-group-text">Ш:</span>
-      <input type="number" class="form-control">
-      <span class="input-group-text">В:</span>
-      <input type="number" class="form-control">
-      <span class="input-group-text">см.</span>
-    </div>
-  </div>
-</div>
+<!--Размер рамы-->
+<app-size-selector [formGroup]="sizeSelectorForm"></app-size-selector>
 
 <hr class="mt-2 mb-3">
 
 <!--Багет-->
-<app-add-baget></app-add-baget>
+<app-add-baget (onSelected)="baget=$event"></app-add-baget>
 
 <div class="row">
   <!--Паспарту 1-->
-  <label class="col-5 col-form-label col-form-label-sm text-end">Паспарту 1</label>
-  <div class="col-7">
-    <div class="input-group input-group-sm mb-2">
-      <button class="btn btn-outline-secondary" type="button"><i class="bi bi-plus-lg"></i></button>
-      <input type="text" class="form-control" disabled>
-      <button class="btn btn-outline-secondary" type="button"><i class="bi bi-trash"></i></button>
-    </div>
-  </div>
-
+  <app-add-paspartu [paspartuNum]="1" (onSelected)="paspartu1=$event"></app-add-paspartu>
   <!--Паспарту 2-->
-  <label class="col-5 col-form-label col-form-label-sm text-end">Паспарту 2</label>
-  <div class="col-7">
-    <div class="input-group input-group-sm mb-2">
-      <button class="btn btn-outline-secondary" type="button"><i class="bi bi-plus-lg"></i></button>
-      <input type="text" class="form-control" disabled>
-      <button class="btn btn-outline-secondary" type="button"><i class="bi bi-trash"></i></button>
-    </div>
-  </div>
-
+  <app-add-paspartu *ngIf="paspartu1" [paspartuNum]="2" (onSelected)="paspartu2=$event"></app-add-paspartu>
   <!--Паспарту 3-->
-  <label class="col-5 col-form-label col-form-label-sm text-end">Паспарту 3</label>
-  <div class="col-7">
-    <div class="input-group input-group-sm mb-2">
-      <button class="btn btn-outline-secondary" type="button"><i class="bi bi-plus-lg"></i></button>
-      <input type="text" class="form-control" disabled>
-      <button class="btn btn-outline-secondary" type="button"><i class="bi bi-trash"></i></button>
-    </div>
-  </div>
+  <app-add-paspartu *ngIf="paspartu2" [paspartuNum]="3" (onSelected)="paspartu3=$event"></app-add-paspartu>
 
   <hr class="mt-2 mb-3">
 
@@ -161,7 +115,7 @@
   <div class="col">
     <div class="card">
       <div class="card-header form-control-sm">Формат рамы</div>
-      <div class="card-body">
+      <div class="card-body d-grid d-lg-inline">
         <div class="form-check form-check-inline form-control-sm">
           <input class="form-check-input" type="radio" name="frameFormat" id="horizontal">
           <label class="form-check-label" for="horizontal">Горизонтально</label>
@@ -171,7 +125,7 @@
           <label class="form-check-label" for="vertical">Вертикально</label>
         </div>
         <div class="form-check form-check-inline form-control-sm">
-          <input class="form-check-input" type="radio" name="frameFormat" id="podves">
+          <input class="form-check-input" type="radio" checked name="frameFormat" id="podves">
           <label class="form-check-label" for="podves">Подвесы в комплекте</label>
         </div>
       </div>

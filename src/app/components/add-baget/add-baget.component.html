@@ -2,31 +2,34 @@
   <label class="col-5 col-form-label col-form-label-sm text-end">Багет</label>
   <div class="col-7">
     <div class="input-group input-group-sm mb-2">
-      <button class="btn btn-outline-secondary" type="button" (click)="triggerModal(bagetTemplate)"><i
-        class="bi bi-plus-lg"></i></button>
-      <input type="text" class="form-control" disabled [value]="modalResult">
-      <button class="btn btn-outline-secondary" type="button"><i class="bi bi-trash"></i></button>
+      <button class="btn btn-outline-secondary"
+              type="button"
+              (click)="triggerModal(bagetTemplate)"
+              ngbTooltip="Добавить багет"
+      ><i class="bi bi-plus-lg"></i>
+      </button>
+      <input type="text" class="form-control" disabled [value]="modalResult?.article ?? NOT_SELECTED">
+      <button class="btn btn-outline-secondary"
+              type="button"
+              (click)="clear()"
+              ngbTooltip="Удалить багет"
+      ><i class="bi bi-trash"></i>
+      </button>
     </div>
   </div>
 </div>
 
 <ng-template #bagetTemplate let-modal>
-  <div class="container p-2">
-      <div class="card mb-2" (click)="setModalResult('num1')">
+  <div class="modal-body p-2">
+      <div class="card mb-2"
+           *ngFor="let baget of bagetRef$ | async; index as i"
+           (click)="setModalResult(baget)"
+      >
         <div class="card-body">
-          <h5 class="card-title">Title</h5>
-          <h6 class="card-subtitle text-muted">Subtitle</h6>
+          <h5 class="card-title">{{ baget.article }}</h5>
+          <h6 class="card-subtitle text-muted">{{ baget.id }}</h6>
           <img src="assets/frame.jpg" class="card-img-top" alt="sample">
-          <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid architecto aspernatur
-            assumenda consequatur.</p>
-        </div>
-      </div>
-      <div class="card mb-2" (click)="setModalResult('num2')">
-        <div class="card-body">
-          <h5 class="card-title">Title</h5>
-          <h6 class="card-subtitle text-muted">Subtitle</h6>
-          <img src="assets/frame.jpg" class="card-img-top" alt="sample">
-          <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid architecto aspernatur
+          <p class="card-text">{{ i + 1 }}. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid architecto aspernatur
             assumenda consequatur.</p>
         </div>
       </div>

@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import {NgbTooltipConfig} from "@ng-bootstrap/ng-bootstrap";
 
 @Component({
   selector: 'app-root',
@@ -6,5 +7,10 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'baget';
+  title = 'Багетный калькулятор';
+
+  constructor(tooltipConfig: NgbTooltipConfig) {
+    tooltipConfig.triggers = 'hover';
+    tooltipConfig.tooltipClass = 'kodak-tooltip';
+  }
 }

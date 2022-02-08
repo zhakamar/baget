@@ -1,0 +1,38 @@
+<div class="row">
+  <label class="col-5 col-form-label col-form-label-sm text-end">Паспарту {{paspartuNum}}</label>
+  <div class="col-7">
+    <div class="input-group input-group-sm mb-2">
+      <button class="btn btn-outline-secondary"
+              type="button"
+              (click)="triggerModal(paspartuTemplate)"
+              ngbTooltip="Добавить паспарту"
+      ><i class="bi bi-plus-lg"></i>
+      </button>
+      <input type="text" class="form-control" disabled [value]="modalResult?.article ?? NOT_SELECTED">
+      <button class="btn btn-outline-secondary"
+              type="button"
+              (click)="clear()"
+              ngbTooltip="Удалить паспарту"
+      ><i class="bi bi-trash"></i>
+      </button>
+    </div>
+  </div>
+</div>
+
+<ng-template #paspartuTemplate let-modal>
+  <div class="modal-body p-2">
+    <div class="card mb-2"
+         *ngFor="let paspartu of paspartuRef$ | async; index as i"
+         (click)="setModalResult(paspartu)"
+    >
+      <div class="card-body">
+        <h5 class="card-title">{{ paspartu.article }}</h5>
+        <h6 class="card-subtitle text-muted">{{ paspartu.id }}</h6>
+        <img src="assets/paspartu.jpg" class="card-img-top" alt="sample">
+        <p class="card-text">{{ i + 1 }}. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid architecto
+          aspernatur
+          assumenda consequatur.</p>
+      </div>
+    </div>
+  </div>
+</ng-template>

@@ -13,6 +13,9 @@ import {ReactiveFormsModule} from "@angular/forms";
 import {AddBagetComponent} from './components/add-baget/add-baget.component';
 import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
 import {HttpClientModule} from "@angular/common/http";
+import {AddPaspartuComponent} from "./components/add-paspartu/add-paspartu.component";
+import { SizeSelectorComponent } from './components/size-selector/size-selector.component';
+import { AddBaseComponent } from './components/add-base/add-base.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +27,9 @@ import {HttpClientModule} from "@angular/common/http";
     HeaderComponent,
     OrderButtonsComponent,
     AddBagetComponent,
+    AddPaspartuComponent,
+    SizeSelectorComponent,
+    AddBaseComponent,
   ],
   imports: [
     BrowserModule,
