@@ -1,23 +1,19 @@
 import {Injectable} from '@angular/core';
-import {AppSettings} from "../app.config";
-import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {BagetRef} from "../components/add-baget/baget.model";
+import {CoreService} from "./core.service";
+import {HttpClient} from "@angular/common/http";
 
 @Injectable({
   providedIn: 'root'
 })
-export class BagetService {
-  private readonly apiURL: string;
+export class BagetService extends CoreService {
 
-  constructor(
-    private readonly settings: AppSettings,
-    private readonly http: HttpClient,
-  ) {
-    this.apiURL = this.settings.apiURL;
+  constructor(http: HttpClient) {
+    super(http);
   }
 
   get bagetRef(): Observable<BagetRef[]> {
-    return this.http.get<BagetRef[]>(`${this.apiURL}/baget`);
+    return super.get('baget');
   }
 }
