@@ -16,7 +16,8 @@ import {HttpClientModule} from "@angular/common/http";
 import {AddPaspartuComponent} from "./components/add-paspartu/add-paspartu.component";
 import {SizeSelectorComponent} from './components/size-selector/size-selector.component';
 import {AddBaseComponent} from './components/add-base/add-base.component';
-import { OptionSelectorComponent } from './components/option-selector/option-selector.component';
+import { GlassSelectorComponent } from './components/glass-selector/glass-selector.component';
+import { ExtrasSelectorComponent } from './components/extras-selector/extras-selector.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { OptionSelectorComponent } from './components/option-selector/option-sel
     AddPaspartuComponent,
     SizeSelectorComponent,
     AddBaseComponent,
-    OptionSelectorComponent,
+    GlassSelectorComponent,
+    ExtrasSelectorComponent,
   ],
   imports: [
     BrowserModule,

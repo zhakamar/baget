@@ -8,7 +8,6 @@ import {PaspartuRef} from "../add-paspartu/paspartu.model";
   template: '',
 })
 export class AddBaseComponent {
-
   @Output() onSelected = new EventEmitter<BagetRef | PaspartuRef>();
 
   readonly NOT_SELECTED = 'не выбрано';

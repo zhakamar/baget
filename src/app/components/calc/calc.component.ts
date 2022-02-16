@@ -36,7 +36,6 @@ export class CalcComponent {
     private fb: FormBuilder,
     readonly extrasService: ExtrasService,
   ) {
-
     this.sizeSelectorForm.valueChanges.pipe(
       tap(el => this.frameSize = el),
       takeUntil(this.unsubscribe$),

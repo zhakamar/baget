@@ -1,7 +1,13 @@
-export interface ExtrasRef {
-  param_id: number;
-  param_name: string;
+import {AddBaseModel} from "../components/add-base/add-base.model";
+
+
+export interface GlassRef extends AddBaseModel {
   price: number;
   sizeDep: boolean;
-  glass: boolean;
+}
+
+export interface ExtrasRef extends AddBaseModel {
+  price: number;
+  sizeDep: boolean;
+  formControlName: string;
 }

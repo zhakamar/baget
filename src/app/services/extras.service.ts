@@ -2,20 +2,21 @@ import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {CoreService} from "./core.service";
 import {map, Observable, ReplaySubject} from "rxjs";
-import {ExtrasRef} from "./extras.model";
+import {ExtrasRef, GlassRef} from "./extras.model";
 import {share} from "rxjs/operators";
 
 @Injectable({
   providedIn: 'root'
 })
 export class ExtrasService extends CoreService {
+  glassRef$: Observable<GlassRef[]>;
+  extrasRef$: Observable<ExtrasRef[]>;
 
-  private extrasAll$: Observable<ExtrasRef[]>;
 
   constructor(http: HttpClient) {
     super(http);
 
-    this.extrasAll$ = super.get<ExtrasRef[]>('extras').pipe(
+    this.glassRef$ = super.get<GlassRef[]>('glass').pipe(
       share({
         connector: () => new ReplaySubject(1),
         resetOnError: false,
@@ -23,17 +24,14 @@ export class ExtrasService extends CoreService {
         resetOnRefCountZero: false,
       }),
     );
-  }
 
-  get glassRef$(): Observable<ExtrasRef[]> {
-    return this.extrasAll$.pipe(
-      map(el => el.filter(e => e.glass)),
-    );
-  }
-
-  get extrasRef$(): Observable<ExtrasRef[]> {
-    return this.extrasAll$.pipe(
-      map(el => el.filter(e => !e.glass)),
+    this.extrasRef$ = super.get<ExtrasRef[]>('extras').pipe(
+      share({
+        connector: () => new ReplaySubject(1),
+        resetOnError: false,
+        resetOnComplete: false,
+        resetOnRefCountZero: false,
+      }),
     );
   }
 }
