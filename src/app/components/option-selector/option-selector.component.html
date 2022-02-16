@@ -1,0 +1,10 @@
+<div class="row">
+  <label class="col-5 col-form-label col-form-label-sm text-end"><ng-content></ng-content></label>
+  <div class="col-7">
+    <div class="input-group input-group-sm mb-2">
+      <select class="form-select" [(ngModel)]="model">
+        <option *ngFor="let option of optionRef$ | async" [ngValue]="option">{{ option?.param_name }}</option>
+      </select>
+    </div>
+  </div>
+</div>
