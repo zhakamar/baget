@@ -17,29 +17,7 @@
   <hr class="mt-2 mb-3">
 
   <!--Стекло-->
-  <label class="col-5 col-form-label col-form-label-sm text-end">Стекло:</label>
-  <div class="col-7">
-    <div class="input-group input-group-sm mb-2">
-      <select class="form-select">
-        <option selected>Стандартное</option>
-        <option>Необычное</option>
-        <option>Пластик</option>
-      </select>
-    </div>
-  </div>
-
-  <!--Задник-->
-  <label class="col-5 col-form-label col-form-label-sm text-end">Задник</label>
-  <div class="col-7">
-    <div class="input-group input-group-sm mb-2">
-      <select class="form-select">
-        <option selected>Картон</option>
-        <option>Бетон</option>
-        <option>Протон</option>
-        <option>Нейтрон</option>
-      </select>
-    </div>
-  </div>
+  <app-option-selector [optionRef$]="extrasService.glassRef$" (onSelected)="glass=$event">Стекло</app-option-selector>
 
   <hr class="mt-2 mb-3">
 

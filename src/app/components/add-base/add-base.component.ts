@@ -25,7 +25,7 @@ export class AddBaseComponent {
     this.modalRef = this.modalService.open(content, {scrollable: true});
   }
 
-  setModalResult(res: BagetRef | PaspartuRef) {
+  setModalResult(res: BagetRef | PaspartuRef): void {
     this.modalResult = res;
     this.onSelected.emit(res);
     this.modalRef.close();
