@@ -17,73 +17,11 @@
   <hr class="mt-2 mb-3">
 
   <!--Стекло-->
-  <app-glass-selector [optionRef$]="extrasService.glassRef$" (onSelected)="glass=$event">Стекло</app-glass-selector>
+  <app-glass-selector (onSelected)="glass=$event">Стекло</app-glass-selector>
 
   <hr class="mt-2 mb-3">
 
-  <!--Оформление в раму-->
-  <label class="col-8 col-form-label col-form-label-sm text-end">Оформление в раму</label>
-  <div class="col p-1">
-    <div class="input-group input-group-sm form-switch mb-2">
-      <input type="checkbox" class="form-check-input">
-    </div>
-  </div>
-
-  <!--Натяжка вышивки, холста-->
-  <label class="col-8 col-form-label col-form-label-sm text-end">Натяжка вышивки, холста</label>
-  <div class="col p-1">
-    <div class="input-group input-group-sm form-switch mb-2">
-      <input type="checkbox" class="form-check-input">
-    </div>
-  </div>
-
-  <!--Оформление алмазной вышивки-->
-  <label class="col-8 col-form-label col-form-label-sm text-end">Алмазная вышивка</label>
-  <div class="col p-1">
-    <div class="input-group input-group-sm form-switch mb-2">
-      <input type="checkbox" class="form-check-input">
-    </div>
-  </div>
-
-  <!--Дополнительное усиление углов-->
-  <label class="col-8 col-form-label col-form-label-sm text-end">Доп. усиление углов</label>
-  <div class="col p-1">
-    <div class="input-group input-group-sm form-switch mb-2">
-      <input type="checkbox" class="form-check-input">
-    </div>
-  </div>
-
-  <!--Дополнительные крепления-->
-  <label class="col-8 col-form-label col-form-label-sm text-end">Доп. крепления</label>
-  <div class="col p-1">
-    <div class="input-group input-group-sm form-switch mb-2">
-      <input type="checkbox" class="form-check-input">
-    </div>
-  </div>
-
-  <!--Дополнительный картон-->
-  <label class="col-8 col-form-label col-form-label-sm text-end">Доп. картон</label>
-  <div class="col p-1">
-    <div class="input-group input-group-sm form-switch mb-2">
-      <input type="checkbox" class="form-check-input">
-    </div>
-  </div>
-
-  <!--МДФ ножка-->
-  <label class="col-8 col-form-label col-form-label-sm text-end">МДФ ножка</label>
-  <div class="col p-1">
-    <div class="input-group input-group-sm form-switch mb-2">
-      <input type="checkbox" class="form-check-input">
-    </div>
-  </div>
-
-  <!--МДФ задник-->
-  <label class="col-8 col-form-label col-form-label-sm text-end">МДФ задник</label>
-  <div class="col p-1">
-    <div class="input-group input-group-sm form-switch mb-2">
-      <input type="checkbox" class="form-check-input">
-    </div>
-  </div>
+  <app-extras-selector (onChanged)="extras=$event"></app-extras-selector>
 
   <hr class="mt-2 mb-3">
 </div>

@@ -3,7 +3,7 @@
   <div class="col-7">
     <div class="input-group input-group-sm mb-2">
       <select class="form-select" [(ngModel)]="model">
-        <option *ngFor="let option of optionRef$ | async" [ngValue]="option">{{ option?.article }}</option>
+        <option *ngFor="let option of extrasService.glassRef$ | async" [ngValue]="option">{{ option?.article }}</option>
       </select>
     </div>
   </div>

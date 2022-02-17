@@ -1,6 +1,5 @@
-<div [formGroup]="extrasSelectorForm">
-  <div class="row"
-       *ngFor="let extra of extrasService.extrasRef$ | async">
+<div *ngIf="extrasSelectorForm" [formGroup]="extrasSelectorForm">
+  <div class="row" *ngFor="let extra of extrasService.extrasRef$ | async">
     <label class="col-8 col-form-label col-form-label-sm text-end">{{extra.article}}</label>
     <div class="col p-1">
       <div class="input-group input-group-sm form-switch mb-2">

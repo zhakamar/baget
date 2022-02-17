@@ -1,4 +1,4 @@
-import {ChangeDetectionStrategy, Component} from '@angular/core';
+import {ChangeDetectionStrategy, Component, OnDestroy} from '@angular/core';
 import {FrameSize} from "./calc.model";
 import {BagetRef} from "../add-baget/baget.model";
 import {PaspartuRef} from "../add-paspartu/paspartu.model";
@@ -14,9 +14,8 @@ import {ExtrasRef} from "../../services/extras.model";
   styleUrls: ['./calc.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class CalcComponent {
-
-  private readonly unsubscribe$: Subject<void> = new Subject();
+export class CalcComponent implements OnDestroy {
+  private readonly unsubscribe$ = new Subject<void>();
 
   private frameSize!: FrameSize;
   private _baget!: BagetRef;
@@ -24,7 +23,7 @@ export class CalcComponent {
   private _paspartu2!: PaspartuRef;
   private _paspartu3!: PaspartuRef;
   private _glass!: ExtrasRef;
-  private _extras!: ExtrasRef;
+  private _extras!: ExtrasRef[];
 
   sizeSelectorForm = this.fb.group({
     sizeType: 'inner',
@@ -32,10 +31,7 @@ export class CalcComponent {
     height: 0,
   })
 
-  constructor(
-    private fb: FormBuilder,
-    readonly extrasService: ExtrasService,
-  ) {
+  constructor(private fb: FormBuilder) {
     this.sizeSelectorForm.valueChanges.pipe(
       tap(el => this.frameSize = el),
       takeUntil(this.unsubscribe$),
@@ -90,11 +86,17 @@ export class CalcComponent {
     console.log(value);
   }
 
-  get extras(): ExtrasRef {
+  get extras(): ExtrasRef[] {
     return this._extras;
   }
 
-  set extras(value: ExtrasRef) {
+  set extras(value: ExtrasRef[]) {
     this._extras = value;
+    console.log(value);
+  }
+
+  ngOnDestroy() {
+    this.unsubscribe$.next();
+    this.unsubscribe$.complete();
   }
 }
