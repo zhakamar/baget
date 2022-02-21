@@ -28,7 +28,7 @@ export class ExtrasSelectorComponent implements OnDestroy {
     this.extrasChanged$ = this.extrasService.extrasRef$.pipe(
       map(extra => {
         this.extrasData = extra;
-        const extrasControls = extra.reduce((prev, cur, i) => Object.assign(prev, {[cur.formControlName]: false}), []);
+        const extrasControls = extra.reduce((prev, cur, i) => Object.assign(prev, {[`f_${++i}`]: false}), []);
         this.extrasSelectorForm = this.fb.group({...extrasControls});
         this.changeDetector.markForCheck();
         return this.extrasSelectorForm;
@@ -53,7 +53,6 @@ export class ExtrasSelectorComponent implements OnDestroy {
   }
 
   ngOnDestroy() {
-    this.unsubscribe$.next();
     this.unsubscribe$.complete();
   }
 }

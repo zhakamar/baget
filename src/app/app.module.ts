@@ -18,6 +18,7 @@ import {SizeSelectorComponent} from './components/size-selector/size-selector.co
 import {AddBaseComponent} from './components/add-base/add-base.component';
 import { GlassSelectorComponent } from './components/glass-selector/glass-selector.component';
 import { ExtrasSelectorComponent } from './components/extras-selector/extras-selector.component';
+import { FrameSelectorComponent } from './components/frame-selector/frame-selector.component';
 
 @NgModule({
   declarations: [
@@ -34,6 +35,7 @@ import { ExtrasSelectorComponent } from './components/extras-selector/extras-sel
     AddBaseComponent,
     GlassSelectorComponent,
     ExtrasSelectorComponent,
+    FrameSelectorComponent,
   ],
   imports: [
     BrowserModule,

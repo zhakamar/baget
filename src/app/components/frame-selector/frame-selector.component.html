@@ -1,0 +1,18 @@
+<div [formGroup]="frameSelectorForm" class="row mt-1">
+  <div class="col">
+    <div class="card">
+      <div class="card-header form-control-sm">Формат рамы</div>
+      <div class="card-body d-grid d-lg-inline">
+        <div *ngFor="let frame of frameTypes"
+             class="form-check form-check-inline form-control-sm">
+          <input class="form-check-input"
+                 type="radio"
+                 id="{{frame.frameType}}"
+                 [value]="frame.frameType"
+                 formControlName="frameType">
+          <label class="form-check-label" for="{{frame.frameType}}">{{frame.frameName}}</label>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
