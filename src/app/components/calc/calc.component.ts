@@ -108,6 +108,7 @@ export class CalcComponent implements OnDestroy {
   }
 
   ngOnDestroy() {
+    this.unsubscribe$.next();
     this.unsubscribe$.complete();
   }
 }

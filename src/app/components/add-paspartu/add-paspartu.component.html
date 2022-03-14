@@ -20,18 +20,22 @@
 </div>
 
 <ng-template #paspartuTemplate let-modal>
+  <div class="modal-header">
+    <span>HEADER</span>
+    <button type="button" class="btn-close btn-outline-light shadow-none" (click)='modal.dismiss()'></button>
+  </div>
   <div class="modal-body p-2">
-    <div class="card mb-2"
-         *ngFor="let paspartu of paspartuRef$ | async; index as i"
-         (click)="setModalResult(paspartu)"
-    >
-      <div class="card-body">
-        <h5 class="card-title">{{ paspartu.article }}</h5>
-        <h6 class="card-subtitle text-muted">{{ paspartu.id }}</h6>
-        <img src="assets/paspartu.jpg" class="card-img-top" alt="sample">
-        <p class="card-text">{{ i + 1 }}. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid architecto
-          aspernatur
-          assumenda consequatur.</p>
+    <div class="row mw-100 align-content-around justify-content-around" data-masonry='{"percentPosition": true}'>
+      <div class="card col-sm-1 col-lg-3 m-2"
+           *ngFor="let paspartu of paspartuRef$ | async; index as i"
+           (click)="setModalResult(paspartu)">
+        <div class="card-body">
+          <h5 class="card-title">{{ paspartu.article }}</h5>
+          <h6 class="card-subtitle text-muted">{{ paspartu.id }}</h6>
+          <img src="assets/paspartu.jpg" class="card-img-top" alt="sample">
+          <p class="card-text">{{ i + 1 }}. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid architecto aspernatur
+            assumenda consequatur.</p>
+        </div>
       </div>
     </div>
   </div>

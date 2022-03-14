@@ -21,7 +21,7 @@ export class AddBaseComponent {
   }
 
   triggerModal(content: TemplateRef<any>): void {
-    this.modalRef = this.modalService.open(content, {scrollable: true});
+    this.modalRef = this.modalService.open(content, {size: 'xl', scrollable: true});
   }
 
   setModalResult(res: BagetRef | PaspartuRef): void {
