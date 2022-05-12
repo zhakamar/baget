@@ -21,8 +21,7 @@
 
 <ng-template #paspartuTemplate let-modal>
   <div class="modal-header">
-    <span>HEADER</span>
-    <button type="button" class="btn-close btn-outline-light shadow-none" (click)='modal.dismiss()'></button>
+    <app-filter (click)="modal.dismiss()"></app-filter>
   </div>
   <div class="modal-body p-2">
     <div class="row gx-0 align-content-around justify-content-around" data-masonry='{"percentPosition": true}'>

@@ -19,6 +19,7 @@ import {AddBaseComponent} from './components/add-base/add-base.component';
 import { GlassSelectorComponent } from './components/glass-selector/glass-selector.component';
 import { ExtrasSelectorComponent } from './components/extras-selector/extras-selector.component';
 import { FrameSelectorComponent } from './components/frame-selector/frame-selector.component';
+import { FilterComponent } from './components/filter/filter.component';
 
 @NgModule({
   declarations: [
@@ -36,6 +37,7 @@ import { FrameSelectorComponent } from './components/frame-selector/frame-select
     GlassSelectorComponent,
     ExtrasSelectorComponent,
     FrameSelectorComponent,
+    FilterComponent,
   ],
   imports: [
     BrowserModule,
