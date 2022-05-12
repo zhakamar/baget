@@ -1,7 +1,7 @@
-import {Component, EventEmitter, Output, TemplateRef} from '@angular/core';
-import {NgbModal, NgbModalRef} from "@ng-bootstrap/ng-bootstrap";
-import {BagetRef} from "../add-baget/baget.model";
-import {PaspartuRef} from "../add-paspartu/paspartu.model";
+import { Component, EventEmitter, Output, TemplateRef } from '@angular/core';
+import { NgbModal, NgbModalRef } from "@ng-bootstrap/ng-bootstrap";
+import { BagetRef } from "../add-baget/baget.model";
+import { PaspartuRef } from "../add-paspartu/paspartu.model";
 
 @Component({
   selector: 'app-add-base',
@@ -21,7 +21,7 @@ export class AddBaseComponent {
   }
 
   triggerModal(content: TemplateRef<any>): void {
-    this.modalRef = this.modalService.open(content, {size: 'xl', scrollable: true});
+    this.modalRef = this.modalService.open(content, { size: 'xl', scrollable: true });
   }
 
   setModalResult(res: BagetRef | PaspartuRef): void {

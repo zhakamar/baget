@@ -25,8 +25,8 @@
       <button type="button" class="btn-close btn-outline-light shadow-none" (click)='modal.dismiss()'></button>
     </div>
     <div class="modal-body p-2">
-      <div class="row mw-100 align-content-around justify-content-around" data-masonry='{"percentPosition": false}'>
-        <div class="cardcol-sm-1 col-lg-3 m-2"
+      <div class="row gx-0 align-content-around justify-content-around" data-masonry='{"percentPosition": false}'>
+        <div class="card col-md-12 col-lg-3 m-2"
              *ngFor="let baget of bagetRef$ | async; index as i"
              (click)="setModalResult(baget)">
           <div class="card-body">
