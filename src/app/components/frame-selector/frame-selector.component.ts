@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {FrameType} from "./frame-selector.model";
-import {ControlContainer, FormGroup} from "@angular/forms";
+import {ControlContainer, UntypedFormGroup} from "@angular/forms";
 
 @Component({
   selector: 'app-frame-selector',
@@ -8,7 +8,7 @@ import {ControlContainer, FormGroup} from "@angular/forms";
   styleUrls: ['./frame-selector.component.scss']
 })
 export class FrameSelectorComponent implements OnInit {
-  frameSelectorForm!: FormGroup;
+  frameSelectorForm!: UntypedFormGroup;
 
   frameTypes: FrameType[] = [
     { frameType: 'horiz', frameName: 'Горизонтально' },
@@ -20,7 +20,7 @@ export class FrameSelectorComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.frameSelectorForm = <FormGroup>this.controlContainer.control;
+    this.frameSelectorForm = <UntypedFormGroup>this.controlContainer.control;
   }
 
 }

@@ -1,5 +1,5 @@
 import {ChangeDetectionStrategy, ChangeDetectorRef, Component, EventEmitter, OnDestroy, Output} from '@angular/core';
-import {FormBuilder, FormGroup} from "@angular/forms";
+import {UntypedFormBuilder, UntypedFormGroup} from "@angular/forms";
 import {ExtrasService} from "../../services/extras.service";
 import {filter, switchMap, takeUntil, tap} from "rxjs/operators";
 import {map, Observable, Subject} from "rxjs";
@@ -18,10 +18,10 @@ export class ExtrasSelectorComponent implements OnDestroy {
 
   private extrasData!: ExtrasRef[];
   private extrasChanged$!: Observable<ExtrasRef>;
-  extrasSelectorForm!: FormGroup;
+  extrasSelectorForm!: UntypedFormGroup;
 
   constructor(
-    private fb: FormBuilder,
+    private fb: UntypedFormBuilder,
     readonly extrasService: ExtrasService,
     private readonly changeDetector: ChangeDetectorRef,
   ) {

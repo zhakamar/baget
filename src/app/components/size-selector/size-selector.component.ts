@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/core';
-import { ControlContainer, FormGroup } from "@angular/forms";
+import { ControlContainer, UntypedFormGroup } from "@angular/forms";
 import { Subject, tap } from 'rxjs';
 import { FrameSize } from "../calc/calc.model";
 import { takeUntil } from "rxjs/operators";
@@ -13,13 +13,13 @@ import { takeUntil } from "rxjs/operators";
 export class SizeSelectorComponent implements OnInit, OnDestroy {
   private readonly destroySubject = new Subject<void>();
 
-  sizeSelectorForm!: FormGroup;
+  sizeSelectorForm!: UntypedFormGroup;
 
   constructor(private readonly controlContainer: ControlContainer) {
   }
 
   ngOnInit(): void {
-    this.sizeSelectorForm = <FormGroup>this.controlContainer.control;
+    this.sizeSelectorForm = <UntypedFormGroup>this.controlContainer.control;
     this.sizeSelectorForm.patchValue({ width: 10, height: 10 });
 
     // may will be needed in future ???

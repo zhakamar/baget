@@ -2,7 +2,7 @@ import {ChangeDetectionStrategy, Component, OnDestroy} from '@angular/core';
 import {FrameSize} from "./calc.model";
 import {BagetRef} from "../add-baget/baget.model";
 import {PaspartuRef} from "../add-paspartu/paspartu.model";
-import {FormBuilder, FormControl} from "@angular/forms";
+import {UntypedFormBuilder, UntypedFormControl} from "@angular/forms";
 import {Subject} from "rxjs";
 import {takeUntil, tap} from "rxjs/operators";
 import {ExtrasRef} from "../../services/extras.model";
@@ -26,7 +26,7 @@ export class CalcComponent implements OnDestroy {
   private _glass!: ExtrasRef;
   private _extras!: ExtrasRef[];
 
-  orderComment = new FormControl('');
+  orderComment = new UntypedFormControl('');
 
   sizeSelectorForm = this.fb.group({
     sizeType: 'inner',
@@ -38,7 +38,7 @@ export class CalcComponent implements OnDestroy {
     frameType: 'podves',
   })
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: UntypedFormBuilder) {
     this.sizeSelectorForm.valueChanges.pipe(
       tap(el => this.frameSize = el),
       takeUntil(this.unsubscribe$),

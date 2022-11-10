@@ -1,5 +1,5 @@
 import {Component, ElementRef, HostBinding, ViewChild} from '@angular/core';
-import {FormBuilder, FormGroup} from "@angular/forms";
+import {UntypedFormBuilder, UntypedFormGroup} from "@angular/forms";
 import {BehaviorSubject, fromEvent} from "rxjs";
 import {debounceTime, tap} from "rxjs/operators";
 
@@ -17,10 +17,10 @@ export class PreviewComponent {
   overlayHeight$ = new BehaviorSubject<number>(0);
 
   filePath = 'assets/preview.png';
-  previewForm: FormGroup;
+  previewForm: UntypedFormGroup;
 
   constructor(
-    public formBuilder: FormBuilder,
+    public formBuilder: UntypedFormBuilder,
   ) {
     fromEvent(window, 'resize').pipe(
       debounceTime(10),
