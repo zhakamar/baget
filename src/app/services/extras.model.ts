@@ -1,4 +1,4 @@
-import {AddBaseModel} from "../components/add-base/add-base.model";
+import { AddBaseModel } from "../components/add-base/add-base.model";
 
 
 export interface GlassRef extends AddBaseModel {

@@ -1,12 +1,12 @@
-import {ChangeDetectionStrategy, Component, OnDestroy} from '@angular/core';
-import {FrameSize} from "./calc.model";
-import {BagetRef} from "../add-baget/baget.model";
-import {PaspartuRef} from "../add-paspartu/paspartu.model";
-import {UntypedFormBuilder, UntypedFormControl} from "@angular/forms";
-import {Subject} from "rxjs";
-import {takeUntil, tap} from "rxjs/operators";
-import {ExtrasRef} from "../../services/extras.model";
-import {FrameType} from "../frame-selector/frame-selector.model";
+import { ChangeDetectionStrategy, Component, OnDestroy } from '@angular/core';
+import { FrameSize } from "./calc.model";
+import { BagetRef } from "../add-baget/baget.model";
+import { PaspartuRef } from "../add-paspartu/paspartu.model";
+import { UntypedFormBuilder, UntypedFormControl } from "@angular/forms";
+import { Subject } from "rxjs";
+import { takeUntil, tap } from "rxjs/operators";
+import { ExtrasRef } from "../../services/extras.model";
+import { FrameType } from "../frame-selector/frame-selector.model";
 
 @Component({
   selector: 'app-calc',
@@ -17,8 +17,8 @@ import {FrameType} from "../frame-selector/frame-selector.model";
 export class CalcComponent implements OnDestroy {
   private readonly unsubscribe$ = new Subject<void>();
 
-  private frameSize: FrameSize = {sizeType: 'inner', width: 0, height: 0};
-  private frameType: FrameType = {frameType: 'podves'};
+  private frameSize: FrameSize = { sizeType: 'inner', width: 0, height: 0 };
+  private frameType: FrameType = { frameType: 'podves' };
   private _baget!: BagetRef;
   private _paspartu1!: PaspartuRef;
   private _paspartu2!: PaspartuRef;

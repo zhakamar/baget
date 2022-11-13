@@ -1,9 +1,9 @@
-import {ChangeDetectionStrategy, ChangeDetectorRef, Component, EventEmitter, OnDestroy, Output} from '@angular/core';
-import {UntypedFormBuilder, UntypedFormGroup} from "@angular/forms";
-import {ExtrasService} from "../../services/extras.service";
-import {filter, switchMap, takeUntil, tap} from "rxjs/operators";
-import {map, Observable, Subject} from "rxjs";
-import {ExtrasRef} from "../../services/extras.model";
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, EventEmitter, OnDestroy, Output } from '@angular/core';
+import { UntypedFormBuilder, UntypedFormGroup } from "@angular/forms";
+import { ExtrasService } from "../../services/extras.service";
+import { switchMap, takeUntil, tap } from "rxjs/operators";
+import { map, Observable, Subject } from "rxjs";
+import { ExtrasRef } from "../../services/extras.model";
 
 @Component({
   selector: 'app-extras-selector',
@@ -28,8 +28,8 @@ export class ExtrasSelectorComponent implements OnDestroy {
     this.extrasChanged$ = this.extrasService.extrasRef$.pipe(
       map(extra => {
         this.extrasData = extra;
-        const extrasControls = extra.reduce((prev, cur, i) => Object.assign(prev, {[`f_${++i}`]: false}), []);
-        this.extrasSelectorForm = this.fb.group({...extrasControls});
+        const extrasControls = extra.reduce((prev, cur) => Object.assign(prev, { [`f_${cur.id}`]: false }), []);
+        this.extrasSelectorForm = this.fb.group({ ...extrasControls });
         this.changeDetector.markForCheck();
         return this.extrasSelectorForm;
       }),
@@ -42,8 +42,8 @@ export class ExtrasSelectorComponent implements OnDestroy {
 
         Object.entries(extras)
           .filter(e => e[1])
-          .forEach(el => res.push(
-            ...this.extrasData.filter(e => e.formControlName === el[0]))
+          .forEach((el, index) => res.push(
+            ...this.extrasData.filter(e => `f_${e.id}` === el[0]))
           );
 
         this.onChanged.emit(res);

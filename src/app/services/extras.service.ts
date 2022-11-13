@@ -1,9 +1,9 @@
-import {Injectable} from '@angular/core';
-import {HttpClient} from "@angular/common/http";
-import {CoreService} from "./core.service";
-import {map, Observable, ReplaySubject} from "rxjs";
-import {ExtrasRef, GlassRef} from "./extras.model";
-import {share} from "rxjs/operators";
+import { Injectable } from '@angular/core';
+import { HttpClient } from "@angular/common/http";
+import { CoreService } from "./core.service";
+import { Observable, ReplaySubject } from "rxjs";
+import { ExtrasRef, GlassRef } from "./extras.model";
+import { share } from "rxjs/operators";
 
 @Injectable({
   providedIn: 'root'

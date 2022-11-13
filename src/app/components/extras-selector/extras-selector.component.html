@@ -1,12 +1,12 @@
 <div *ngIf="extrasSelectorForm" [formGroup]="extrasSelectorForm">
-  <div class="row" *ngFor="let extra of extrasService.extrasRef$ | async">
-    <label class="col-8 col-form-label col-form-label-sm text-end" for="{{extra.formControlName}}">{{extra.article}}</label>
+  <div class="row" *ngFor="let extra of extrasService.extrasRef$ | async; let i=index">
+    <label class="col-8 col-form-label col-form-label-sm text-end" for="{{extra.id}}">{{extra.article}}</label>
     <div class="col p-1">
       <div class="input-group input-group-sm form-switch mb-2">
         <input type="checkbox"
                class="form-check-input"
-               id="{{extra.formControlName}}"
-               formControlName="{{extra.formControlName}}">
+               id="{{extra.id}}"
+               formControlName="f_{{i + 1}}">
       </div>
     </div>
   </div>
