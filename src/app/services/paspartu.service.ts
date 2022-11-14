@@ -12,7 +12,7 @@ export class PaspartuService extends CoreService {
     super(http);
   }
 
-  get paspartuRef(): Observable<PaspartuRef[]> {
+  get paspartuRef$(): Observable<PaspartuRef[]> {
     return super.get('paspartu');
   }
 }

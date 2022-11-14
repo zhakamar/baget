@@ -21,6 +21,6 @@ export class AddPaspartuComponent extends AddBaseComponent {
     private readonly paspartuService: PaspartuService,
   ) {
     super(modalService);
-    this.paspartuRef$ = paspartuService.paspartuRef;
+    this.paspartuRef$ = paspartuService.paspartuRef$;
   }
 }

@@ -19,13 +19,16 @@ export class ExtrasSelectorComponent implements OnDestroy {
   private extrasData!: ExtrasRef[];
   private extrasChanged$!: Observable<ExtrasRef>;
   extrasSelectorForm!: UntypedFormGroup;
+  extrasRef$: Observable<ExtrasRef[]>;
 
   constructor(
     private fb: UntypedFormBuilder,
-    readonly extrasService: ExtrasService,
+    private readonly extrasService: ExtrasService,
     private readonly changeDetector: ChangeDetectorRef,
   ) {
-    this.extrasChanged$ = this.extrasService.extrasRef$.pipe(
+    this.extrasRef$ = extrasService.extrasRef$;
+
+    this.extrasChanged$ = extrasService.extrasRef$.pipe(
       map(extra => {
         this.extrasData = extra;
         const extrasControls = extra.reduce((prev, cur) => Object.assign(prev, { [`f_${cur.id}`]: false }), []);
