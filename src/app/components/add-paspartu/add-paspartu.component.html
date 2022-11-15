@@ -21,7 +21,10 @@
 
 <ng-template #paspartuTemplate let-modal>
   <div class="modal-header">
-    <app-filter (click)="modal.dismiss()"></app-filter>
+    <app-filter
+      placeholder="Поиск паспарту"
+      (onClose)="modal.dismiss()"
+      (onFilter)="onFilter($event)"></app-filter>
   </div>
   <div class="modal-body p-2">
     <div class="row gx-0 align-content-around justify-content-around" data-masonry='{"percentPosition": true}'>

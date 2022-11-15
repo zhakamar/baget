@@ -21,4 +21,8 @@ export class AddBagetComponent extends AddBaseComponent {
     super(modalService);
     this.bagetRef$ = bagetService.bagetRef;
   }
+
+  onFilter(value: string): void {
+    console.log(value);
+  }
 }

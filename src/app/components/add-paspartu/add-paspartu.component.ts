@@ -23,4 +23,8 @@ export class AddPaspartuComponent extends AddBaseComponent {
     super(modalService);
     this.paspartuRef$ = paspartuService.paspartuRef$;
   }
+
+  onFilter(value: string): void {
+    console.log(value);
+  }
 }
