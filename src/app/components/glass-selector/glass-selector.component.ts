@@ -1,7 +1,7 @@
-import {Component, EventEmitter, Input, Output} from '@angular/core';
-import {ExtrasRef, GlassRef} from "../../services/extras.model";
-import {Observable} from "rxjs";
-import {ExtrasService} from "../../services/extras.service";
+import { Component, EventEmitter, Output } from '@angular/core';
+import { ExtrasRef, GlassRef } from "../../services/extras.model";
+import { Observable } from "rxjs";
+import { ExtrasService } from "../../services/extras.service";
 
 @Component({
   selector: 'app-glass-selector',
@@ -11,7 +11,10 @@ import {ExtrasService} from "../../services/extras.service";
 export class GlassSelectorComponent {
   @Output() onSelected = new EventEmitter<ExtrasRef>();
 
-  constructor(readonly extrasService: ExtrasService) {
+  glassRef$: Observable<GlassRef[]>;
+
+  constructor(private readonly extrasService: ExtrasService) {
+    this.glassRef$ = extrasService.glassRef$;
   }
 
   set model(value: ExtrasRef) {
