@@ -23,6 +23,7 @@
   <div class="modal-header">
     <app-filter
       placeholder="Поиск багета"
+      [value]="searchValue"
       (onClose)="modal.dismiss()"
       (onFilter)="onFilter($event)"
     ></app-filter>

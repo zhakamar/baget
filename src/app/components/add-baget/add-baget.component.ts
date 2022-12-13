@@ -1,10 +1,10 @@
-import {ChangeDetectionStrategy, Component, OnDestroy} from '@angular/core';
+import {ChangeDetectionStrategy, Component} from '@angular/core';
 import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 import {BagetService} from "../../services/baget.service";
-import {Subject, switchMap} from "rxjs";
+import {switchMap} from "rxjs";
 import {AddBaseComponent} from "../add-base/add-base.component";
 import {BagetRef} from "./baget.model";
-import {take, takeUntil, tap} from "rxjs/operators";
+import {tap} from "rxjs/operators";
 
 @Component({
   selector: 'app-add-baget',
@@ -12,15 +12,9 @@ import {take, takeUntil, tap} from "rxjs/operators";
   styleUrls: ['./add-baget.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class AddBagetComponent extends AddBaseComponent implements OnDestroy {
-  unsubscribe$ = new Subject<void>();
-
+export class AddBagetComponent extends AddBaseComponent {
   bagetRef: BagetRef[] = [];
-  private readonly take = 9;
-  private count = 0;
-  private skip = 0;
-  throttle = 50;
-  distance = 2;
+  private bagetRefBackup: BagetRef[] = [];
 
   constructor(
     modalService: NgbModal,
@@ -28,28 +22,36 @@ export class AddBagetComponent extends AddBaseComponent implements OnDestroy {
   ) {
     super(modalService);
 
-    this.bagetService.bagetRefCount().pipe(
+    bagetService.getCount<number>('baget').pipe(
       tap(count => this.count = count),
-      switchMap(() => this.bagetService.bagetRefPartial(this.take, this.skip)),
+      switchMap(() => this.bagetService.getPartial<BagetRef[]>('baget', { take: this.take, skip: this.skip })),
       tap(baget => this.bagetRef = baget),
-      takeUntil(this.unsubscribe$),
     ).subscribe();
   }
 
   onFilter(value: string): void {
-    console.log(value);
+    super.onFilter(value);
+
+    if (value) {
+      this.bagetService.findByArticle<BagetRef[], string>('baget', value).pipe(
+        tap(result => {
+          if (!this.useSearch) { this.bagetRefBackup = this.bagetRef; }
+          this.bagetRef = result;
+          this.useSearch = true;
+        }),
+      ).subscribe();
+    } else {
+      this.useSearch = false;
+      setTimeout(() => this.bagetRef = this.bagetRefBackup);
+    }
   }
 
   onScroll(): void {
+    if (this.useSearch) { return }
+
     this.skip += this.take;
-    this.bagetService.bagetRefPartial(this.take, this.skip).pipe(
-      take(this.count - this.bagetRef.length),
+    this.bagetService.getPartial<BagetRef[]>('baget', { take: this.take, skip: this.skip }).pipe(
       tap(baget => this.bagetRef.push(...baget)),
     ).subscribe();
-  }
-
-  ngOnDestroy(): void {
-    this.unsubscribe$.next();
-    this.unsubscribe$.complete();
   }
 }

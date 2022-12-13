@@ -1,9 +1,10 @@
 import {ChangeDetectionStrategy, Component, Input} from '@angular/core';
 import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
-import {Observable} from "rxjs";
+import {tap} from "rxjs";
 import {AddBaseComponent} from "../add-base/add-base.component";
 import {PaspartuRef} from "./paspartu.model";
 import {PaspartuService} from "../../services/paspartu.service";
+import {take} from "rxjs/operators";
 
 
 @Component({
@@ -14,17 +15,35 @@ import {PaspartuService} from "../../services/paspartu.service";
 })
 export class AddPaspartuComponent extends AddBaseComponent {
   @Input() paspartuNum!: number;
-  paspartuRef$: Observable<PaspartuRef[]>;
+
+  paspartuRef: PaspartuRef[] = [];
+  private paspartuRefBackup: PaspartuRef[] = [];
 
   constructor(
     modalService: NgbModal,
     private readonly paspartuService: PaspartuService,
   ) {
     super(modalService);
-    this.paspartuRef$ = paspartuService.paspartuRef$;
+    paspartuService.paspartuRef$.pipe(
+      take(1),
+      tap(paspartu => this.paspartuRef = paspartu),
+    ).subscribe();
   }
 
   onFilter(value: string): void {
-    console.log(value);
+    super.onFilter(value);
+
+    if (value) {
+      this.paspartuService.findByArticle<PaspartuRef[], string>('paspartu', value).pipe(
+        tap(result => {
+          if (!this.useSearch) { this.paspartuRefBackup = this.paspartuRef; }
+          this.paspartuRef = result;
+          this.useSearch = true;
+        }),
+      ).subscribe();
+    } else {
+      this.useSearch = false;
+      setTimeout(() => this.paspartuRef = this.paspartuRefBackup);
+    }
   }
 }

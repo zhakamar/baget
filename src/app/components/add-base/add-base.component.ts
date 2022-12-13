@@ -15,6 +15,16 @@ export class AddBaseComponent {
   modalRef!: NgbModalRef;
   modalResult?: BagetRef | PaspartuRef;
 
+  searchValue = '';
+  useSearch = false;
+
+  throttle = 50;
+  distance = 2;
+
+  readonly take = 9;
+  skip = 0;
+  count = 0;
+
   constructor(
     private readonly modalService: NgbModal,
   ) {
@@ -33,5 +43,9 @@ export class AddBaseComponent {
   clear(): void {
     this.modalResult = undefined;
     this.onSelected.emit(undefined);
+  }
+
+  onFilter(value: string): void {
+    this.searchValue = value;
   }
 }

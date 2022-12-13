@@ -4,6 +4,7 @@
     <input type="search"
            class="form-control me-2"
            [placeholder]="placeholder"
+           [value]="value"
            (keyup)="onSearchType($any($event).target.value)"
            (search)="onSearchType($any($event).target.value)"
     >

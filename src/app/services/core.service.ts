@@ -35,4 +35,8 @@ export class CoreService {
   getPartial<T>(entity: string, params?: Record<'take' | 'skip', number>): Observable<T> {
     return this.http.get<T>(`${config.apiURL}/${entity}/partial`, { params });
   }
+
+  findByArticle<T, C>(entity: string, clause: C): Observable<T> {
+    return this.http.get<T>(`${config.apiURL}/${entity}/article/${clause}`);
+  }
 }

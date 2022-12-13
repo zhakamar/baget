@@ -9,6 +9,7 @@ import { debounceTime, takeUntil } from "rxjs/operators";
 })
 export class FilterComponent implements OnInit, OnDestroy {
   @Input() placeholder = '';
+  @Input() value = '';
 
   @Output() onClose = new EventEmitter<void>();
   @Output() onFilter = new EventEmitter<string>();
@@ -18,7 +19,7 @@ export class FilterComponent implements OnInit, OnDestroy {
 
   constructor() {
     this._searchSubject.pipe(
-      debounceTime(200),
+      debounceTime(500),
       distinctUntilChanged(),
       tap(res => this.onFilter.emit(res)),
       takeUntil(this.unsubscribe$),

@@ -23,13 +23,14 @@
   <div class="modal-header">
     <app-filter
       placeholder="Поиск паспарту"
+      [value]="searchValue"
       (onClose)="modal.dismiss()"
       (onFilter)="onFilter($event)"></app-filter>
   </div>
   <div class="modal-body p-2">
     <div class="row gx-0 align-content-around justify-content-around" data-masonry='{"percentPosition": true}'>
       <div class="card col-md-10 col-lg-3 m-2"
-           *ngFor="let paspartu of paspartuRef$ | async; index as i"
+           *ngFor="let paspartu of paspartuRef; index as i"
            (click)="setModalResult(paspartu)">
         <div class="card-body">
           <h5 class="card-title">{{ paspartu.article }}</h5>
