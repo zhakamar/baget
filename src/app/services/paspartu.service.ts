@@ -13,6 +13,6 @@ export class PaspartuService extends CoreService {
   }
 
   get paspartuRef$(): Observable<PaspartuRef[]> {
-    return super.get('paspartu');
+    return super.getCached('paspartu');
   }
 }

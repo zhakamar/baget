@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { AppConfig as param } from "../app.config";
+import { AppConfig as config } from "../app.config";
 import { HttpClient } from "@angular/common/http";
 import { Observable, ReplaySubject } from "rxjs";
 import { share } from "rxjs/operators";
@@ -14,11 +14,11 @@ export class CoreService {
 
   private readonly getMap = new Map<string, Observable<unknown>>();
 
-  get<T>(entity: string): Observable<T> {
+  getCached<T>(entity: string): Observable<T> {
     return (
       this.getMap.has(entity) ?
         this.getMap :
-        this.getMap.set(entity, this.http.get<T>(`${param.apiURL}/${entity}`).pipe(
+        this.getMap.set(entity, this.http.get<T>(`${config.apiURL}/${entity}`).pipe(
           share({
             connector: () => new ReplaySubject(1),
             resetOnError: false,
@@ -26,5 +26,9 @@ export class CoreService {
             resetOnRefCountZero: false,
           }),
         ))).get(entity) as Observable<T>;
+  }
+
+  getPartial<T>(entity: string, params?: Record<'take' | 'skip', number>): Observable<T> {
+    return this.http.get<T>(`${config.apiURL}/${entity}/partial`, { params });
   }
 }

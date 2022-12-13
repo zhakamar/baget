@@ -15,7 +15,7 @@ export class ExtrasService extends CoreService {
   constructor(http: HttpClient) {
     super(http);
 
-    this.glassRef$ = super.get<GlassRef[]>('glass');
-    this.extrasRef$ = super.get<ExtrasRef[]>('extras');
+    this.glassRef$ = super.getCached<GlassRef[]>('glass');
+    this.extrasRef$ = super.getCached<ExtrasRef[]>('extras');
   }
 }

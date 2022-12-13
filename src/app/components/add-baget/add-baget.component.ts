@@ -13,6 +13,8 @@ import {BagetRef} from "./baget.model";
 })
 export class AddBagetComponent extends AddBaseComponent {
   bagetRef$: Observable<BagetRef[]>;
+  take: number = 9;
+  skip: number = 0;
 
   constructor(
     modalService: NgbModal,
