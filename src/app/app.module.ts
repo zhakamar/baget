@@ -20,6 +20,7 @@ import { GlassSelectorComponent } from './components/glass-selector/glass-select
 import { ExtrasSelectorComponent } from './components/extras-selector/extras-selector.component';
 import { FrameSelectorComponent } from './components/frame-selector/frame-selector.component';
 import { FilterComponent } from './components/filter/filter.component';
+import {InfiniteScrollModule} from "ngx-infinite-scroll";
 
 @NgModule({
   declarations: [
@@ -46,6 +47,7 @@ import { FilterComponent } from './components/filter/filter.component';
     ReactiveFormsModule,
     NgbModule,
     HttpClientModule,
+    InfiniteScrollModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
