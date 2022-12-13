@@ -17,6 +17,10 @@ export class BagetService extends CoreService {
     return super.getCached('baget');
   }
 
+  bagetRefCount(): Observable<number> {
+    return super.getCount('baget');
+  }
+
   bagetRefPartial(take: number, skip: number): Observable<BagetRef[]> {
     return super.getPartial('baget', { take, skip });
   }

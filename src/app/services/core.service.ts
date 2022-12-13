@@ -28,6 +28,10 @@ export class CoreService {
         ))).get(entity) as Observable<T>;
   }
 
+  getCount<T>(entity: string): Observable<T> {
+    return this.http.get<T>(`${config.apiURL}/${entity}/count`);
+  }
+
   getPartial<T>(entity: string, params?: Record<'take' | 'skip', number>): Observable<T> {
     return this.http.get<T>(`${config.apiURL}/${entity}/partial`, { params });
   }

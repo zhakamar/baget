@@ -1,10 +1,10 @@
-import {ChangeDetectionStrategy, Component, OnDestroy, OnInit} from '@angular/core';
+import {ChangeDetectionStrategy, Component, OnDestroy} from '@angular/core';
 import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 import {BagetService} from "../../services/baget.service";
-import {Subject} from "rxjs";
+import {Subject, switchMap} from "rxjs";
 import {AddBaseComponent} from "../add-base/add-base.component";
 import {BagetRef} from "./baget.model";
-import {takeUntil, tap} from "rxjs/operators";
+import {take, takeUntil, tap} from "rxjs/operators";
 
 @Component({
   selector: 'app-add-baget',
@@ -12,12 +12,13 @@ import {takeUntil, tap} from "rxjs/operators";
   styleUrls: ['./add-baget.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class AddBagetComponent extends AddBaseComponent implements OnInit, OnDestroy {
+export class AddBagetComponent extends AddBaseComponent implements OnDestroy {
   unsubscribe$ = new Subject<void>();
 
   bagetRef: BagetRef[] = [];
-  take = 9;
-  skip = 0;
+  private readonly take = 9;
+  private count = 0;
+  private skip = 0;
   throttle = 50;
   distance = 2;
 
@@ -26,10 +27,10 @@ export class AddBagetComponent extends AddBaseComponent implements OnInit, OnDes
     private readonly bagetService: BagetService,
   ) {
     super(modalService);
-  }
 
-  ngOnInit() {
-    this.bagetService.bagetRefPartial(this.take, this.skip).pipe(
+    this.bagetService.bagetRefCount().pipe(
+      tap(count => this.count = count),
+      switchMap(() => this.bagetService.bagetRefPartial(this.take, this.skip)),
       tap(baget => this.bagetRef = baget),
       takeUntil(this.unsubscribe$),
     ).subscribe();
@@ -42,8 +43,8 @@ export class AddBagetComponent extends AddBaseComponent implements OnInit, OnDes
   onScroll(): void {
     this.skip += this.take;
     this.bagetService.bagetRefPartial(this.take, this.skip).pipe(
+      take(this.count - this.bagetRef.length),
       tap(baget => this.bagetRef.push(...baget)),
-      takeUntil(this.unsubscribe$),
     ).subscribe();
   }
 
