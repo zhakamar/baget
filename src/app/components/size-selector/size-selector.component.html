@@ -2,7 +2,12 @@
   <div class="row">
     <span class="col-5 d-xs-none"></span>
     <div class="col-lg-7 col-sm-12 text-lg-center text-end mb-2">
-      <div class="form-check form-check-inline">
+      <div class="form-check form-check-inline"
+           [ngbPopover]="inside"
+           [openDelay]="500"
+           container="body"
+           triggers="mouseenter:mouseleave"
+           placement="bottom-end">
         <input class="form-check-input"
                type="radio"
                id="inner"
@@ -11,7 +16,12 @@
         >
         <label class="form-check-label" for="inner">Внутренний</label>
       </div>
-      <div class="form-check form-check-inline">
+      <div class="form-check form-check-inline"
+           [ngbPopover]="outside"
+           [openDelay]="500"
+           container="body"
+           triggers="mouseenter:mouseleave"
+           placement="bottom-end">
         <input class="form-check-input"
                type="radio"
                id="outer"
@@ -21,7 +31,6 @@
         <label class="form-check-label" for="outer">Внешний</label>
       </div>
     </div>
-
   </div>
   <div class="row">
     <label class="col-5 col-form-label col-form-label-sm text-end">Размер рамы</label>
@@ -42,3 +51,5 @@
     </div>
   </div>
 </div>
+<ng-template #inside><img src="assets/inside.png" alt="Внутренний размер"></ng-template>
+<ng-template #outside><img src="assets/outside.png" alt="Внешний размер"></ng-template>
