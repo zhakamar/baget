@@ -6,7 +6,7 @@ import { ExtrasService } from "../../services/extras.service";
 @Component({
   selector: 'app-glass-selector',
   templateUrl: './glass-selector.component.html',
-  styleUrls: ['./glass-selector.component.scss']
+  styleUrls: ['./glass-selector.component.scss'],
 })
 export class GlassSelectorComponent {
   @Output() onSelected = new EventEmitter<ExtrasRef>();
@@ -19,5 +19,9 @@ export class GlassSelectorComponent {
 
   set model(value: ExtrasRef) {
     this.onSelected.emit(value);
+  }
+
+  get model() {
+    return null as unknown as ExtrasRef
   }
 }
