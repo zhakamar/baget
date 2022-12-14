@@ -21,6 +21,8 @@ import { ExtrasSelectorComponent } from './components/extras-selector/extras-sel
 import { FrameSelectorComponent } from './components/frame-selector/frame-selector.component';
 import { FilterComponent } from './components/filter/filter.component';
 import {InfiniteScrollModule} from "ngx-infinite-scroll";
+import { ErrorComponent } from './layout/error/error.component';
+import { NotFoundComponent } from './layout/not-found/not-found.component';
 
 @NgModule({
   declarations: [
@@ -39,6 +41,8 @@ import {InfiniteScrollModule} from "ngx-infinite-scroll";
     ExtrasSelectorComponent,
     FrameSelectorComponent,
     FilterComponent,
+    ErrorComponent,
+    NotFoundComponent,
   ],
   imports: [
     BrowserModule,
