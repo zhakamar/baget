@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, OnDestroy } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnDestroy, SimpleChanges } from '@angular/core';
 import { FrameSize } from "./calc.model";
 import { BagetRef } from "../add-baget/baget.model";
 import { PaspartuRef } from "../add-paspartu/paspartu.model";
@@ -95,7 +95,6 @@ export class CalcComponent implements OnDestroy {
 
   set glass(value: ExtrasRef) {
     this._glass = value;
-    console.log(value);
   }
 
   get extras(): ExtrasRef[] {
@@ -104,7 +103,6 @@ export class CalcComponent implements OnDestroy {
 
   set extras(value: ExtrasRef[]) {
     this._extras = value;
-    console.log(value);
   }
 
   ngOnDestroy() {

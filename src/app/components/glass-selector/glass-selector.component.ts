@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Output } from '@angular/core';
 import { ExtrasRef, GlassRef } from "../../services/extras.model";
 import { Observable } from "rxjs";
 import { ExtrasService } from "../../services/extras.service";
@@ -7,6 +7,7 @@ import { ExtrasService } from "../../services/extras.service";
   selector: 'app-glass-selector',
   templateUrl: './glass-selector.component.html',
   styleUrls: ['./glass-selector.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class GlassSelectorComponent {
   @Output() onSelected = new EventEmitter<ExtrasRef>();
