@@ -1,8 +1,6 @@
 import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/core';
 import { ControlContainer, UntypedFormGroup } from "@angular/forms";
-import { Subject, tap } from 'rxjs';
-import { FrameSize } from "../calc/calc.model";
-import { takeUntil } from "rxjs/operators";
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-size-selector',

@@ -1,5 +1,5 @@
-import { ChangeDetectionStrategy, Component, OnDestroy, SimpleChanges } from '@angular/core';
-import { FrameSize } from "./calc.model";
+import { ChangeDetectionStrategy, Component, OnDestroy } from '@angular/core';
+import { FrameSize } from "./params.model";
 import { BagetRef } from "../add-baget/baget.model";
 import { PaspartuRef } from "../add-paspartu/paspartu.model";
 import { UntypedFormBuilder, UntypedFormControl } from "@angular/forms";
@@ -9,12 +9,12 @@ import { ExtrasRef } from "../../services/extras.model";
 import { FrameType } from "../frame-selector/frame-selector.model";
 
 @Component({
-  selector: 'app-calc',
-  templateUrl: './calc.component.html',
-  styleUrls: ['./calc.component.scss'],
+  selector: 'app-params',
+  templateUrl: './params.component.html',
+  styleUrls: ['./params.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class CalcComponent implements OnDestroy {
+export class ParamsComponent implements OnDestroy {
   private readonly unsubscribe$ = new Subject<void>();
 
   private frameSize: FrameSize = { sizeType: 'inner', width: 0, height: 0 };

@@ -6,7 +6,7 @@ import { AppComponent } from './app.component';
 import { MainComponent } from './layout/main/main.component';
 import { PreviewComponent } from './components/preview/preview.component';
 import { ResultComponent } from './components/result/result.component';
-import { CalcComponent } from './components/calc/calc.component';
+import { ParamsComponent } from './components/params/params.component';
 import { HeaderComponent } from './layout/header/header.component';
 import { OrderButtonsComponent } from './components/order-buttons/order-buttons.component';
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
@@ -31,7 +31,7 @@ import { InterceptorService } from './services/interceptor.service';
     MainComponent,
     PreviewComponent,
     ResultComponent,
-    CalcComponent,
+    ParamsComponent,
     HeaderComponent,
     OrderButtonsComponent,
     AddBagetComponent,
